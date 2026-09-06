@@ -3,14 +3,12 @@ import { Hexagon, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 
-const links = [
-  { to: "/student", label: "Student" },
-  { to: "/recruiter", label: "Recruiter" },
-  { to: "/college", label: "College" },
-] as const;
-
 export function SiteHeader() {
   const { session, profile, signOut } = useAuth();
+
+  const linkClass =
+    "rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground";
+  const activeProps = { className: "bg-secondary text-foreground" };
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
@@ -21,16 +19,15 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
-          {links.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-              activeProps={{ className: "bg-secondary text-foreground" }}
-            >
-              {link.label}
-            </Link>
-          ))}
+          <Link to="/student" className={linkClass} activeProps={activeProps}>
+            Student
+          </Link>
+          <Link to="/recruiter" className={linkClass} activeProps={activeProps}>
+            Recruiter
+          </Link>
+          <Link to="/college" className={linkClass} activeProps={activeProps}>
+            College
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">

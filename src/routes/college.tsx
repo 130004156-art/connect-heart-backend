@@ -36,7 +36,7 @@ export const Route = createFileRoute("/college")({
       },
     ],
   }),
-  component: CollegeDashboard;
+  component: CollegeDashboard,
 });
 
 function CollegeDashboard() {
