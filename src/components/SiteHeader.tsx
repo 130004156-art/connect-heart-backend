@@ -43,7 +43,7 @@ export function SiteHeader() {
             </>
           ) : (
             <Button size="sm" asChild>
-              <Link to="/auth" search={{}}>
+              <Link to="/auth" search={{ role: "student" }}>
                 Sign in
               </Link>
             </Button>
