@@ -14,7 +14,122 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      applications: {
+        Row: {
+          applied_at: string
+          id: string
+          job_id: string
+          match_score: number | null
+          status: string
+          student_id: string
+        }
+        Insert: {
+          applied_at?: string
+          id?: string
+          job_id: string
+          match_score?: number | null
+          status?: string
+          student_id: string
+        }
+        Update: {
+          applied_at?: string
+          id?: string
+          job_id?: string
+          match_score?: number | null
+          status?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "applications_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "applications_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      opportunities: {
+        Row: {
+          company_name: string
+          created_at: string
+          description: string | null
+          id: string
+          location: string | null
+          recruiter_id: string | null
+          required_skills: string[]
+          stipend: string | null
+          title: string
+        }
+        Insert: {
+          company_name: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          location?: string | null
+          recruiter_id?: string | null
+          required_skills?: string[]
+          stipend?: string | null
+          title: string
+        }
+        Update: {
+          company_name?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          location?: string | null
+          recruiter_id?: string | null
+          required_skills?: string[]
+          stipend?: string | null
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunities_recruiter_id_fkey"
+            columns: ["recruiter_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          college_name: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          role: string
+          skills: string[]
+          target_role: string | null
+        }
+        Insert: {
+          college_name?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          role?: string
+          skills?: string[]
+          target_role?: string | null
+        }
+        Update: {
+          college_name?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          role?: string
+          skills?: string[]
+          target_role?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
