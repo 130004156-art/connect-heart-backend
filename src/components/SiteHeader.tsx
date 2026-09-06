@@ -43,7 +43,9 @@ export function SiteHeader() {
             </>
           ) : (
             <Button size="sm" asChild>
-              <Link to="/auth">Sign in</Link>
+              <Link to="/auth" search={{}}>
+                Sign in
+              </Link>
             </Button>
           )}
         </div>
